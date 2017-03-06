@@ -30,14 +30,8 @@ namespace Calc1
     {
         static void Main(string[] args)
         {
-            //var calcstring = "4+6*5/25*(4+1)";
-            var argBuilder = new StringBuilder();
 
-            // concatinate all the args into one calculation string
-            foreach (var arg in args)
-            {
-                argBuilder.Append(arg);
-            }
+            var argBuilder = Initialize(args);
 
             //check to make sure we actually have an argument.
             if (argBuilder.Length == 0)
@@ -48,14 +42,51 @@ namespace Calc1
 
             var calcstring = argBuilder.ToString();
             Console.WriteLine($"Calculating {calcstring}");
-            var input = new List<string>();
 
-            var rpn = new List<RpnModel>();
-            var token = new Stack<double>();
+            var input = ParseInputString(calcstring);
+
+            //Create an Reverse Polish Notation (RPN) representation of the input string
+            var shunt = ShuntYard.ShuntRpnModel(input);
+            if (!string.IsNullOrEmpty(shunt.Item2))
+            {
+                //problem with the shuntyard - display the error and end
+                Console.WriteLine(shunt.Item2);
+                return;
+            }
+            var rpn = shunt.Item1; 
+
+            //calculate the result.
+            var calcResult = CalculateRpn.RpnResult(rpn);
+            if (!string.IsNullOrEmpty(calcResult.Item2))
+            {
+                //problem with the calculator portion - display the error and end
+                Console.WriteLine(calcResult.Item2);
+                return;
+            }
+
+            Console.WriteLine(calcResult.Item1);
+
+        }
+
+        private static StringBuilder Initialize(string[] args)
+        {
+            var argBuilder = new StringBuilder();
+
+            // concatinate all the args into one calculation string
+            foreach (var arg in args)
+            {
+                argBuilder.Append(arg);
+            }
+
+            return argBuilder;
+        }
+
+        private static List<string> ParseInputString(string calcString)
+        {
             var b = new char[1];
-
+            var input = new List<string>();
             //Parse the input string into a list
-            using (var sr = new StringReader(calcstring))
+            using (var sr = new StringReader(calcString))
             {
                 //NOTE: We could make the number variable a stringbuilder but I'm not sure for values less than 1000 if it
                 //would make sense.
@@ -79,26 +110,7 @@ namespace Calc1
                 }
             }
 
-            //Create an Reverse Polish Notation (RPN) representation of the input string
-            var shunt = ShuntYard.ShuntRpnModel(input);
-            if (!string.IsNullOrEmpty(shunt.Item2))
-            {
-                //problem with the shuntyard - display the error and end
-                Console.WriteLine(shunt.Item2);
-                return;
-            }
-            rpn = shunt.Item1; 
-
-            //calculate the result.
-            var calcResult = CalculateRpn.RpnResult(rpn);
-            if (!string.IsNullOrEmpty(calcResult.Item2))
-            {
-                Console.WriteLine(calcResult.Item2);
-                return;
-            }
-
-            Console.WriteLine(calcResult.Item1);
-
+            return input;
         }
     }
 }
