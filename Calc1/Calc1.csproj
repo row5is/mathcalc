@@ -43,8 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateRpn.cs" />
+    <Compile Include="Models\OperatorPrecedence.cs" />
+    <Compile Include="Models\RpnModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShuntYard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
