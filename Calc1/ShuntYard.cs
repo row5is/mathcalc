@@ -9,6 +9,13 @@ using static Calc1.Models.OperatorPrecedence.Associative;
 
 namespace Calc1
 {
+    /// <summary>
+    /// The ShuntYard will pull off numbers and operators and place them in a list in RPN order. 
+    /// Each operator has a precedence that is used to determine the placement of the operator in 
+    /// relation to the numbers.
+    ///
+    /// If an unknown operator is encountered it will result in an error.
+    /// </summary>
     class ShuntYard
     {
         //Setup operators
@@ -93,7 +100,7 @@ namespace Calc1
                             if (op.Count == 0)
                             {
                                 //Problem - let the user know and exit the function
-                                errorMessage = "error - unbalanced parenthesis";
+                                errorMessage = "error - unbalanced parenthesis, no matching left parenthesis.";
                                 return new Tuple<List<RpnModel>, string>(null, errorMessage);
                             }
                             //remove the left paren
@@ -116,6 +123,11 @@ namespace Calc1
                                 }
                                 op.Push(op1);
                             }
+                            else
+                            {
+                                errorMessage = $"error - unkown operator '{part}'\nValid operators are\n";
+                                errorMessage = Operators.Aggregate(errorMessage, (current, operatorPrecedence) => current + $"{operatorPrecedence.Operator}\n");
+                            }
                             break;
                     }
 
@@ -128,7 +140,7 @@ namespace Calc1
                 //we should not have any left parenthesis left on the stack. If we do then we have a problem
                 if (op.Peek().Operator == "(")
                 {
-                    errorMessage = "error - unbalanced parenthesis";
+                    errorMessage = "error - unbalanced parenthesis, no matching right parenthesis.";
                 }
                 rpn.Add(new RpnModel { Token = op.Pop().Operator, TokenType = IsOperator });
             }

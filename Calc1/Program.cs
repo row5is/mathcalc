@@ -28,7 +28,8 @@ namespace Calc1
     /// 
     /// Sample equations
     /// 4+6*5/25*(4+1) This should result with 10
-    /// 2^10
+    /// 2^10 This should result in 1024
+    /// 2=10 This should result in an unknown operator error
     /// </summary>
     class Program
     {
@@ -112,6 +113,7 @@ namespace Calc1
                         number = string.Empty;
                     }
                 }
+                //pick up any remaining numbers that were read at the end of the string
                 if (!string.IsNullOrEmpty(number))
                 {
                     input.Add(number);
