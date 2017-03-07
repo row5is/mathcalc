@@ -25,6 +25,10 @@ namespace Calc1
     /// and then calculate the answer.
     /// 
     /// There a no parameters except the equation to solve so all arguments will be concatinated together.
+    /// 
+    /// Sample equations
+    /// 4+6*5/25*(4+1) This should result with 10
+    /// 2^10
     /// </summary>
     class Program
     {
@@ -107,6 +111,10 @@ namespace Calc1
                         input.Add(b[0].ToString());
                         number = string.Empty;
                     }
+                }
+                if (!string.IsNullOrEmpty(number))
+                {
+                    input.Add(number);
                 }
             }
 
