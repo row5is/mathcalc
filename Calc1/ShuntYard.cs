@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Calc1.Models;
 using static Calc1.Models.RpnModel.TypeofToken;
 using static Calc1.Models.OperatorPrecedence.Associative;

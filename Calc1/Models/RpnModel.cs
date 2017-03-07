@@ -1,6 +1,4 @@
-﻿using System.Dynamic;
-
-namespace Calc1.Models
+﻿namespace Calc1.Models
 {
     public class RpnModel
     {

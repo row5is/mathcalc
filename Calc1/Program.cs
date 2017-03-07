@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.IO;
-using System.Linq;
-using System.Security.Authentication.ExtendedProtection;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Calc1.Models;
-using static Calc1.Models.RpnModel.TypeofToken;
-using static Calc1.Models.OperatorPrecedence.Associative;
 
 namespace Calc1
 {
