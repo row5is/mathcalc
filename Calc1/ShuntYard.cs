@@ -131,6 +131,8 @@ namespace Calc1
 
                 }
                 //Console.WriteLine(part);
+
+            // console.part
             }
             //get the remaining operators
             while (op.Count > 0)
