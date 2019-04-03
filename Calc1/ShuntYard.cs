@@ -16,6 +16,7 @@ namespace Calc1
     /// </summary>
     class ShuntYard
     {
+        /// testdddd
         //Setup operators
         private static readonly List<OperatorPrecedence> Operators = new List<OperatorPrecedence>
         {
