@@ -26,7 +26,19 @@ namespace Calc1
     {
         static void Main(string[] args)
         {
+            Run(args);
 
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                //Give a chance to see the output before the window closes
+                Console.WriteLine();
+                Console.WriteLine(@"Press Enter to exit");
+                Console.ReadLine();
+            }
+        }
+
+        private static void Run(string[] args)
+        {
             var argBuilder = Initialize(args);
 
             //check to make sure we actually have an argument.
@@ -49,7 +61,8 @@ namespace Calc1
                 Console.WriteLine(shunt.Item2);
                 return;
             }
-            var rpn = shunt.Item1; 
+
+            var rpn = shunt.Item1;
 
             //calculate the result.
             var calcResult = CalculateRpn.RpnResult(rpn);
@@ -61,7 +74,6 @@ namespace Calc1
             }
 
             Console.WriteLine(calcResult.Item1);
-
         }
 
         private static StringBuilder Initialize(string[] args)
