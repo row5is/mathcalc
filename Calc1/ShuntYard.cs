@@ -11,6 +11,8 @@ namespace Calc1
     /// The ShuntYard will pull off numbers and operators and place them in a list in RPN order. 
     /// Each operator has a precedence that is used to determine the placement of the operator in 
     /// relation to the numbers.
+    /// 
+    /// Added this comment
     ///
     /// If an unknown operator is encountered it will result in an error.
     /// </summary>
