@@ -123,6 +123,7 @@ namespace Calc1
                             }
                             else
                             {
+                                // this is an MF IXL comment added for branch MFDemo1
                                 errorMessage = $"error - unkown operator '{part}'\nValid operators are\n";
                                 errorMessage = Operators.Aggregate(errorMessage, (current, operatorPrecedence) => current + $"{operatorPrecedence.Operator}\n");
                             }
